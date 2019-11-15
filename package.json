@@ -1,0 +1,23 @@
+{
+  "name": "nutrition-tracker-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wu-jeffrey/nutrition-tracker-2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wu-jeffrey/nutrition-tracker-2/issues"
+  },
+  "homepage": "https://github.com/wu-jeffrey/nutrition-tracker-2#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

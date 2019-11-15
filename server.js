@@ -6,7 +6,7 @@ const app = express();
 // API routes
 // TODO: Move to separate file
 app.get('/api/nutritionix/:query', (req, res) => {
-  // TODO: use regex to escape chars in query
+  // TODO: figure out regex+replace to escape chars in query
   let query = req.params.query || '';
   var options = {
     hostname: 'trackapi.nutritionix.com',

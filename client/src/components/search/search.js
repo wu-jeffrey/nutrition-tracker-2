@@ -28,7 +28,7 @@ class Search extends React.Component {
 
   handleInputChange(event, value) {
     // TODO: fix this Temporary Ghetto "Debounce"
-    if(value != "" && value.length > 2) {
+    if(value !== "" && value.length > 2) {
       // Make loader appear and keep popper open
       this.setState(state => ({
         open: true,

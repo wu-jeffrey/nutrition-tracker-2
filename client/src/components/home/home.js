@@ -11,25 +11,25 @@ function Home() {
     <div className="home">
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Card className="card">Summary</Card>
+          <Card className="card">
+            <CardContent>
+              Stuff
+            </CardContent>
+          </Card>
         </Grid>
+
+        {/* Left Column */}
         <Grid item xs={5}>
           <Card className="card">List</Card>
         </Grid>
         
-        <Grid container item xs={7} spacing={3}>
-          {/* Food Search Card */}
-          <Grid item xs={12}>
-            <Card className="card">
-              <CardContent>
-                <Search></Search>
-              </CardContent>
-            </Card>
-          </Grid>
-          {/* Custom Macro Card */}
-          <Grid item xs={12}>
-            <Card className="card">Custom Macros</Card>
-          </Grid>
+        {/* Right Column */}
+        <Grid item xs={7}>
+          <Card className="card">
+            <CardContent>
+              <Search></Search>
+            </CardContent>
+          </Card>
         </Grid>
       </Grid>      
     </div>

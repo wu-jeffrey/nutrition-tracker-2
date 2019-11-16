@@ -1,6 +1,6 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import Autocomplete from './autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 class Search extends React.Component {
   // Find a better event to update things on
@@ -9,7 +9,8 @@ class Search extends React.Component {
     this.state = {
       open: false,
       loading: false,
-      options: []
+      options: [],
+      searchedFood: undefined,
     }
   }
 
@@ -23,7 +24,7 @@ class Search extends React.Component {
       }));
 
       (async () => {
-        const response = await fetch(`/api/nutritionix/${value}`);
+        const response = await fetch(`/api/nutritionix/foods/${value}`);
         const foods = await response.json();
         this.setState(state => ({
           options: Object.keys(foods)
@@ -32,7 +33,7 @@ class Search extends React.Component {
           })
           .flat()
           .map((food) => {
-            return { name: food.food_name };
+            return { name: food.food_name, nix_item_id: food.nix_item_id };
           }),
           loading: false
         }))
@@ -45,14 +46,31 @@ class Search extends React.Component {
     }
   }
 
+  handleOptionClicked(event, value) {
+    (async () => {
+      const response = await fetch(`/api/nutritionix/food/${!!value.nix_item_id}/${value.nix_item_id || value.name}`);
+      const nutrition_facts = await response.json();
+      console.log(nutrition_facts);
+    })();
+
+    this.setState({
+      open: false,
+      loading: false,
+      options: [],
+      searchedFood: undefined
+    })
+  }
+
   render() { 
     return(
       <Autocomplete
         id="search-select"
+        freeSolo={true}
         open={this.state.open}
         disableOpenOnFocus={true}
         // TODO: Figure out better way to get rid of the bindings, figure out newer syntax
         onInputChange={this.handleInputChange.bind(this)}
+        onOptionClick={this.handleOptionClicked.bind(this)}
         getOptionLabel={option => option.name}
         options={this.state.options}
         loading={this.state.loading}

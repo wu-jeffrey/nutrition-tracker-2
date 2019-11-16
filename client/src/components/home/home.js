@@ -32,9 +32,7 @@ function Home() {
           <Grid item xs={12}>
             <Card className="card">Custom Macros</Card>
           </Grid>
-
         </Grid>
-
       </Grid>      
     </div>
   );

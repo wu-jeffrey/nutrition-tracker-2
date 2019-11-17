@@ -20,8 +20,6 @@ class MacroNutrientForm extends React.Component {
 
   // TODO: Debounce this!
   handleChange(event) {
-    // TODO: Find better way to stop circular propagation
-    // i.e. statechange triggers onchange, which triggers statechange, ...
     if (this.state[event.target.id] === event.target.value) return;
     this.setState({
       [event.target.id]: event.target.value

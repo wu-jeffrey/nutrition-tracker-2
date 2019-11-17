@@ -6,7 +6,6 @@ const config = require('../../config/config');
 const router = express.Router();
 
 router.get('/foods/:query', (req, res) => {
-  // TODO: figure out regex+replace to escape chars in query
   const query = encodeURI(req.params.query);
   const options = {
     hostname: 'trackapi.nutritionix.com',

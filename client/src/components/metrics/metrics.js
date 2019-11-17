@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from './CircularProgress';
 
 
 class Metrics extends React.Component {
@@ -20,6 +20,11 @@ class Metrics extends React.Component {
     return 100*(this.state[key]/this.state.target[key]);
   }
 
+  getDialDisplayText(key) {
+    let str = `${Math.round(this.state[key])}/${Math.round(this.state.target[key])}`;
+    return str;
+  }
+
   render() {
     return (
       <div style={{ padding: 20 }}>
@@ -30,10 +35,34 @@ class Metrics extends React.Component {
           justify="space-around"
           alignItems="center"
         >
-          <CircularProgress size={200} variant="static" value={this.computePercentage('calories')} />
-          <CircularProgress size={200} variant="static" value={this.computePercentage('protein')} />
-          <CircularProgress size={200} variant="static" value={this.computePercentage('carbohydrate')} />
-          <CircularProgress size={200} variant="static" value={this.computePercentage('fat')} />
+          <CircularProgress 
+            label={'calories'} 
+            displayText={this.getDialDisplayText('calories')} 
+            size={200} 
+            variant="static" 
+            value={this.computePercentage('calories')} 
+          />
+          <CircularProgress 
+            label={'calories'} 
+            displayText={this.getDialDisplayText('protein')} 
+            size={200} 
+            variant="static" 
+            value={this.computePercentage('protein')} 
+          />
+          <CircularProgress 
+            label={'calories'} 
+            displayText={this.getDialDisplayText('carbohydrate')} 
+            size={200} 
+            variant="static" 
+            value={this.computePercentage('carbohydrate')} 
+          />
+          <CircularProgress 
+            label={'calories'} 
+            displayText={this.getDialDisplayText('fat')} 
+            size={200} 
+            variant="static" 
+            value={this.computePercentage('fat')} 
+          />
         </Grid>      
       </div>
     );

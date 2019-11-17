@@ -1,5 +1,7 @@
 const express = require('express');
 const https = require('https');
+const config = require('../../config/config');
+
 const router = express.Router();
 
 router.get('/foods/:query', (req, res) => {
@@ -10,8 +12,8 @@ router.get('/foods/:query', (req, res) => {
     path: `/v2/search/instant?query=${query}`,
     method : 'GET',
     headers: {
-      "x-app-id": "724ff2f9",
-      "x-app-key": "278536e5231ffaa828d7e0ee0f64326c"
+      "x-app-id": config.nutritionixAppId,
+      "x-app-key": config.nutritionixAppKey,
     }
   }
 
@@ -42,8 +44,8 @@ router.get('/nutrition-facts/:branded/:id', (req, res) => {
     method : branded ? 'GET' : 'POST',
     headers: {
       "Content-Type": "application/json",
-      "x-app-id": "724ff2f9",
-      "x-app-key": "278536e5231ffaa828d7e0ee0f64326c"
+      "x-app-id": config.nutritionixAppId,
+      "x-app-key": config.nutritionixAppKey,
     }
   }
 

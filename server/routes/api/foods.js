@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // Models
-const Food = require('../../models/Food');
+const Food = require('../../db/models/Food');
 
 // Returns all foods
 // TODO: Use middleware and auth to only get a single user's foods

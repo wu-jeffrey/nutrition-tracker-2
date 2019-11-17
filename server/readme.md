@@ -18,7 +18,6 @@ This server follows the microservice pattern and REST architecture so that it ca
 * All services will reside inside `routes/api/*`
 * Be as verbose as necessary. Function names should clearly convey their usage, variables should be descriptive
 * Use `const` for variables that are not modified after initialization and `let` otherwise
-* Try and use arrow functions or class methods, i.e. avoid function declarations because of JS lexical scoping issues
 * Where possible, the last key-value pair in an `Object` should have a comma. This helps reduce `Git diffs` when appending key-value pairs to said `Object`.
 
 ### Naming
@@ -27,8 +26,8 @@ This server follows the microservice pattern and REST architecture so that it ca
 * Variable names should be `camelCase`
 
 ## Testing
-* `Mocha.js` is used as our testing framework and `Chai.js` as an assertion library
-* The `test` folder structure mimics the `server` folder structure, and the test for each file will be `<name-of-file>.test.<js | ext>`
+* `Mocha.js` is used as our testing framework, `Chai.js` as an assertion library, `supertest` for HTTP testing and `mockgoose` for a testing DB
+* The `test` folder structure mimics the `server` folder structure, and the test for each file will be `<name-of-file>.test.js`
 
 ### API keys / Sensitive Data
 * Several Keys are used: 

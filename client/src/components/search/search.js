@@ -36,7 +36,7 @@ class Search extends React.Component {
       }));
 
       (async () => {
-        const response = await fetch(`/api/food-search/foods/${value}`);
+        const response = await fetch(encodeURI(`/api/food-search/foods/${value}`));
         const foods = await response.json();
         this.setState(state => ({
           options: Object.keys(foods)
@@ -60,7 +60,7 @@ class Search extends React.Component {
 
   handleOptionClicked(event, value) {
     (async () => {
-      const response = await fetch(`/api/food-search/nutrition-facts/${!!value.nix_item_id}/${value.nix_item_id || value.name}`);
+      const response = await fetch(encodeURI(`/api/food-search/nutrition-facts/${!!value.nix_item_id}/${value.nix_item_id || value.name}`));
       const payload = await response.json();
 
       // TODO: Consider hashmap for performance

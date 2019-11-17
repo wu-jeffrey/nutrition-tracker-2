@@ -1,12 +1,13 @@
 const express = require('express');
 const https = require('https');
+const querystring = require('querystring');
 const config = require('../../config/config');
 
 const router = express.Router();
 
 router.get('/foods/:query', (req, res) => {
   // TODO: figure out regex+replace to escape chars in query
-  const query = req.params.query || '';
+  const query = encodeURI(req.params.query);
   const options = {
     hostname: 'trackapi.nutritionix.com',
     path: `/v2/search/instant?query=${query}`,
@@ -35,9 +36,10 @@ router.get('/foods/:query', (req, res) => {
 router.get('/nutrition-facts/:branded/:id', (req, res) => {
   const branded = req.params.branded === 'true'; // TODO: This is hacky
   const id = req.params.id || '';
-  const path = branded ? `/v2/search/item?nix_item_id=${id}` : "/v2/natural/nutrients";
+  const path = (branded) ? `/v2/search/item?nix_item_id=${encodeURI(id)}` : "/v2/natural/nutrients";
   const post_data = JSON.stringify({'query': id})
 
+  console.log(post_data);
   const options = {
     hostname: 'trackapi.nutritionix.com',
     path: path,

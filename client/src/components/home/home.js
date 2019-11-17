@@ -42,7 +42,7 @@ class Home extends React.Component {
 
   handleRowDelete(deleted_id) {
     this.setState({
-      foodList: [...this.state.foodList].filter((food) => food._id != deleted_id)
+      foodList: [...this.state.foodList].filter((food) => food._id !== deleted_id)
     });
   }
 

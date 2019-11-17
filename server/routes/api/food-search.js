@@ -1,6 +1,5 @@
 const express = require('express');
 const https = require('https');
-const querystring = require('querystring');
 const config = require('../../config/config');
 
 const router = express.Router();
@@ -17,16 +16,16 @@ router.get('/foods/:query', (req, res) => {
     }
   }
 
-  const request = https.request(options, function(response){
+  const request = https.request(options, (response) => {
     let body = ""
-    response.on('data', function(data) {
+    response.on('data', (data) => {
       body += data;
     });
-    response.on('end', function() {
+    response.on('end', () => {
       res.send(JSON.parse(body));
     });
   });
-  request.on('error', function(e) {
+  request.on('error', (e) => {
     console.log('Request Error: ' + e.message);
   });
   request.end();
@@ -36,9 +35,8 @@ router.get('/nutrition-facts/:branded/:id', (req, res) => {
   const branded = req.params.branded === 'true'; // TODO: This is hacky
   const id = req.params.id || '';
   const path = (branded) ? `/v2/search/item?nix_item_id=${encodeURI(id)}` : "/v2/natural/nutrients";
-  const post_data = JSON.stringify({'query': id})
+  const postData = JSON.stringify({'query': id})
 
-  console.log(post_data);
   const options = {
     hostname: 'trackapi.nutritionix.com',
     path: path,
@@ -62,7 +60,7 @@ router.get('/nutrition-facts/:branded/:id', (req, res) => {
   request.on('error', (e) => {
     console.log('Request Error: ' + e.message);
   });
-  request.write(post_data);
+  request.write(postData);
   request.end();
 });
 

@@ -42,8 +42,8 @@ class FoodTable extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Table>
+      <div style={{overflowY:'scroll', maxHeight:500}}>
+        <Table stickyHeader>
           <TableHead>
             <TableRow>
               <TableCell>Food Name</TableCell>
@@ -71,7 +71,7 @@ class FoodTable extends React.Component {
             ))}
           </TableBody>
         </Table>
-      </React.Fragment>
+      </div>
     );
   }
 }

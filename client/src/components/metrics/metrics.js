@@ -17,11 +17,12 @@ class Metrics extends React.Component {
   }
 
   computePercentage(key) {
-    return 100*(this.state[key]/this.state.target[key]);
+    const percentage = 100*(this.state[key]/this.state.target[key]);
+    return (percentage > 100 ? 100 : percentage)
   }
 
   getDialDisplayText(key) {
-    let str = `${Math.round(this.state[key])}/${Math.round(this.state.target[key])}`;
+    const str = `${Math.round(this.state[key])}/${Math.round(this.state.target[key])}`;
     return str;
   }
 

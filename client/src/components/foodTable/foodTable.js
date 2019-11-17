@@ -13,6 +13,7 @@ class FoodTable extends React.Component {
     this.state = {
       rows: (props.rows || []),
     }
+    this.onRowDelete = props.onRowDelete;
   }
 
   componentDidUpdate(prevProps) {
@@ -26,12 +27,15 @@ class FoodTable extends React.Component {
     (async () => {
       const _response = await fetch(`/api/foods/${food_id}`, {method: 'DELETE'});
       const response = await _response.json();
-      console.log(response);
       
       if (response.success) {
         this.setState({
-          rows: [...this.state.rows].filter((food) => food._id != food_id)
+          rows: [...this.state.rows].filter((food) => food._id !== food_id)
         });
+
+        if (this.onRowDelete) {
+          this.onRowDelete(food_id);
+        }
       }
     })();
   }
@@ -52,7 +56,7 @@ class FoodTable extends React.Component {
           </TableHead>
           <TableBody>
             {this.state.rows.map(row => (
-              <TableRow key={row.name}>
+              <TableRow key={row._id}>
                 <TableCell component="th" scope="row">{row.name}</TableCell>
                 <TableCell align="right">{row.calories}</TableCell>
                 <TableCell align="right">{row.fat}</TableCell>

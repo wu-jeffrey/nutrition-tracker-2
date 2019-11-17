@@ -24,6 +24,7 @@ class Search extends React.Component {
         nf_total_fat: 0,
       },
     }
+    this.onSubmit = props.onSubmit;
   }
 
   handleInputChange(event, value) {
@@ -139,6 +140,7 @@ class Search extends React.Component {
           protein={this.state.nutrition_facts.nf_protein}
           carbohydrate={this.state.nutrition_facts.nf_total_carbohydrate}
           fat={this.state.nutrition_facts.nf_total_fat}
+          onSubmit={this.onSubmit}
         ></MacroNutrientForm>
       </React.Fragment>
     );

@@ -8,7 +8,7 @@ class MacroNutrientForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {...this.props};
-    this.onSubmit = this.props.onSubmit;
+    this.onSubmit = props.onSubmit
   }
 
   componentDidUpdate(prevProps) {
@@ -44,8 +44,9 @@ class MacroNutrientForm extends React.Component {
     (async () => {
       const _response = await fetch("/api/foods/", settings);
       const response = await _response.json();
-
+      debugger
       if (this.onSubmit) {
+
         this.onSubmit(response);
       }
     })();

@@ -9,6 +9,10 @@ This server follows the microservice pattern and REST architecture so that it ca
 * To start server: `npm run start`
 * To start server with reloading on filesave: `npm run dev`
 
+### Development
+* On dev, this server runs on port `5000`. The frontend use a proxy pointed at this port so if you change it make sure to change the proxy too
+* To add npm scripts, you can find the `scripts` object in the `package.json` file in `server/`
+
 ## Conventions
 * Entrypoint is `server.js`
 * All services will reside inside `routes/api/*`

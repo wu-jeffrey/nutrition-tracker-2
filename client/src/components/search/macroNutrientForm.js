@@ -8,6 +8,7 @@ class MacroNutrientForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {...this.props};
+    this.onSubmit = this.props.onSubmit;
   }
 
   componentDidUpdate(prevProps) {
@@ -28,8 +29,26 @@ class MacroNutrientForm extends React.Component {
   }
 
   handleSubmit(event) {
-    debugger
-    console.log()
+    // TODO: put this in a datalayer
+    const { food_name: name, calories, protein, carbohydrate, fat } = this.state;
+    const settings = {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({name:name, calories:calories, protein:protein, carbohydrate:carbohydrate, fat:fat})
+    };
+
+    (async () => {
+      const _response = await fetch("/api/foods/", settings);
+      const response = await _response.json();
+
+      if (this.onSubmit) {
+        this.onSubmit(response);
+      }
+    })();
   }
 
   render() {
@@ -61,7 +80,6 @@ class MacroNutrientForm extends React.Component {
             />
           </Grid>
         </Grid>
-
         {/* Container with 3 bottom inputs */}
         <Grid container spacing={3}>
           <Grid item xs={4}>

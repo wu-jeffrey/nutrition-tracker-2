@@ -1,0 +1,75 @@
+import React from 'react';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+
+class FoodTable extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      rows: (props.rows || []),
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    // TODO: String comparison here feels hacky
+    if (JSON.stringify(prevProps) !== JSON.stringify(this.props)) {
+      this.setState({...this.props});
+    }
+  }
+
+  handleDeleteClicked(event, food_id) {
+    (async () => {
+      const _response = await fetch(`/api/foods/${food_id}`, {method: 'DELETE'});
+      const response = await _response.json();
+      console.log(response);
+      
+      if (response.success) {
+        this.setState({
+          rows: [...this.state.rows].filter((food) => food._id != food_id)
+        });
+      }
+    })();
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Food Name</TableCell>
+              <TableCell align="right">Calories</TableCell>
+              <TableCell align="right">Fat (g)</TableCell>
+              <TableCell align="right">Carbs (g)</TableCell>
+              <TableCell align="right">Protein (g)</TableCell>
+              <TableCell align="right">Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {this.state.rows.map(row => (
+              <TableRow key={row.name}>
+                <TableCell component="th" scope="row">{row.name}</TableCell>
+                <TableCell align="right">{row.calories}</TableCell>
+                <TableCell align="right">{row.fat}</TableCell>
+                <TableCell align="right">{row.carbohydrate}</TableCell>
+                <TableCell align="right">{row.protein}</TableCell>
+                <TableCell align="right">
+                  <IconButton onClick={(event) => this.handleDeleteClicked(event, row._id)}>
+                    <DeleteIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </React.Fragment>
+    );
+  }
+}
+
+export default FoodTable;

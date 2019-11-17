@@ -24,4 +24,10 @@ router.post('/', (req, res) => {
   newFood.save().then(food => res.json(food));
 });
 
+router.delete('/:id', (req, res) => {
+  Food.findById(req.params.id)
+    .then(food => food.remove().then(() => res.json({success: true})))
+    .catch(err => res.status(404).json(err))
+});
+
 module.exports = router;

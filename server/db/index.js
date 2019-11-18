@@ -22,12 +22,13 @@ function connect() {
         })
     } else {
         mongoose.connect(db_uri,
-          { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, })
+          { useNewUrlParser: true, useCreateIndex: true, })
           .then((res, err) => {
             if (err) return reject(err);
             console.log('MongoDB connected');
             resolve();
           })
+          .catch((err) => console.log('Problem connecting to MongoDB: ', err))
     }
   });
 }

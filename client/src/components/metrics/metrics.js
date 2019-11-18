@@ -44,24 +44,26 @@ class Metrics extends React.Component {
             value={this.computePercentage('calories')} 
           />
           <CircularProgress 
-            label={'protein'} 
+            label={'protein (g)'} 
             displayText={this.getDialDisplayText('protein')} 
             size={200} 
-            variant="static" 
+            variant="static"
+            color="secondary"
             value={this.computePercentage('protein')} 
           />
           <CircularProgress 
-            label={'carbohydrate'} 
+            label={'carbohydrate (g)'} 
             displayText={this.getDialDisplayText('carbohydrate')} 
             size={200} 
-            variant="static" 
+            variant="static"
             value={this.computePercentage('carbohydrate')} 
           />
           <CircularProgress 
-            label={'fat'} 
+            label={'fat (g)'} 
             displayText={this.getDialDisplayText('fat')} 
             size={200} 
-            variant="static" 
+            variant="static"
+            color="secondary"
             value={this.computePercentage('fat')} 
           />
         </Grid>      

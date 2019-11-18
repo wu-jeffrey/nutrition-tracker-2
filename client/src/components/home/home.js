@@ -46,6 +46,12 @@ class Home extends React.Component {
     });
   }
 
+  handleFoodAdded(food) {
+    this.setState({
+      foodList: [...this.state.foodList, food]
+    });
+  }
+
   render() {
     return (
       <div className="home">
@@ -80,8 +86,7 @@ class Home extends React.Component {
           <Grid item xs={5}>
             <Card className="card">
               <CardContent>
-                <Search>
-                </Search>
+                <Search onSubmit={(added_food) => this.handleFoodAdded(added_food )}></Search>
               </CardContent>
             </Card>
           </Grid>

@@ -27,6 +27,8 @@ class MacroNutrientForm extends React.Component {
   }
 
   handleSubmit(event) {
+    event.preventDefault();
+    event.stopPropagation();
     // TODO: put this in a datalayer
     const { food_name: name, calories, protein, carbohydrate, fat } = this.state;
     const settings = {
@@ -42,9 +44,7 @@ class MacroNutrientForm extends React.Component {
     (async () => {
       const _response = await fetch("/api/foods/", settings);
       const response = await _response.json();
-      debugger
       if (this.onSubmit) {
-
         this.onSubmit(response);
       }
     })();

@@ -19,6 +19,7 @@ class MacroNutrientForm extends React.Component {
   }
 
   // TODO: Debounce this!
+  // event.target.id is calories | protein | carbohydrate | fat
   handleChange(event) {
     if (this.state[event.target.id] === event.target.value) return;
     this.setState({

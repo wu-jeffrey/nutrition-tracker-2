@@ -60,6 +60,9 @@ class Search extends React.Component {
   }
 
   handleOptionClicked(event, value) {
+    // TODO: weird bug here, may require more thorough investigation
+    // value is sometimes undefined, investigate autocomplete component
+    if (value === undefined) return;
     (async () => {
       const response = await fetch(encodeURI(`/api/food-search/nutrition-facts/${!!value.nix_item_id}/${value.nix_item_id || value.name}`));
       const payload = await response.json();

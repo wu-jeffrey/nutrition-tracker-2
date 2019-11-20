@@ -26,7 +26,6 @@ router.get('/foods/:query', (req, res, next) => {
     });
   });
   request.on('error', (e) => {
-    console.log('Request Error: ' + e.message);
     next(e);
   });
   request.end();
@@ -59,7 +58,6 @@ router.get('/nutrition-facts/:branded/:id', (req, res, next) => {
     });
   });
   request.on('error', (e) => {
-    console.log('Request Error: ' + e.message);
     next(e);
   });
   request.write(postData);

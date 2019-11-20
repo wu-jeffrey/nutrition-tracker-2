@@ -16,7 +16,6 @@ function connect() {
             { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, })
             .then((res, err) => {
               if (err) return reject(err);
-              console.log('Mockgoose connected');
               resolve();
             })
         })

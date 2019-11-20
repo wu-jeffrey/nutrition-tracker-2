@@ -48,9 +48,9 @@ class FoodTable extends React.Component {
             <TableRow>
               <TableCell>Food Name</TableCell>
               <TableCell align="right">Calories</TableCell>
-              <TableCell align="right">Fat (g)</TableCell>
-              <TableCell align="right">Carbs (g)</TableCell>
               <TableCell align="right">Protein (g)</TableCell>
+              <TableCell align="right">Carbs (g)</TableCell>
+              <TableCell align="right">Fat (g)</TableCell>
               <TableCell align="right">Actions</TableCell>
             </TableRow>
           </TableHead>
@@ -59,9 +59,9 @@ class FoodTable extends React.Component {
               <TableRow key={row._id}>
                 <TableCell component="th" scope="row">{row.name}</TableCell>
                 <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbohydrate}</TableCell>
                 <TableCell align="right">{row.protein}</TableCell>
+                <TableCell align="right">{row.carbohydrate}</TableCell>
+                <TableCell align="right">{row.fat}</TableCell>
                 <TableCell align="right">
                   <IconButton onClick={(event) => this.handleDeleteClicked(event, row._id)}>
                     <DeleteIcon />

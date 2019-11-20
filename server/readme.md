@@ -15,7 +15,9 @@ This server follows the microservice pattern and REST architecture so that it ca
 
 ## Conventions
 * Entrypoint is `server.js`
-* All services will reside inside `routes/api/*`
+* All services will reside inside `/routes/api/*`
+* DB models and ORM/ODM implementation and wrappers will reside in `/db`
+* Custom middleware (non-routes) will reside in `/middleware`
 * Be as verbose as necessary. Function names should clearly convey their usage, variables should be descriptive
 * Use `const` for variables that are not modified after initialization and `let` otherwise
 * Where possible, the last key-value pair in an `Object` should have a comma. This helps reduce `Git diffs` when appending key-value pairs to said `Object`.

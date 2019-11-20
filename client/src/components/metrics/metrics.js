@@ -22,7 +22,8 @@ class Metrics extends React.Component {
   }
 
   getDialDisplayText(key) {
-    const str = `${Math.round(this.state[key])}/${Math.round(this.state.target[key])}`;
+    const val = Math.round(this.state[key]) || 0;
+    const str = `${val}/${Math.round(this.state.target[key])}`;
     return str;
   }
 

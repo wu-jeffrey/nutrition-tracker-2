@@ -6,7 +6,6 @@ const app = require('../../../app.js');
 const conn = require('../../../db/index.js');
 
 describe('/api/foods/', function() {
-  this.timeout(10000); // Need some extra time for Fake mongo to setup
   before((done) => {
     conn.connect()
       .then(() => done())

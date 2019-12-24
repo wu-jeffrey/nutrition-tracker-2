@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from './CircularProgress';
-
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 class Metrics extends React.Component {
   constructor(props) {

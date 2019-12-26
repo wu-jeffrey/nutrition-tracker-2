@@ -1,14 +1,14 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const httpErrorHanlder = require('./middleware/http-error-handler')
 const app = express();
 
 // Middleware
-app.use(bodyParser.json());
+app.use(express.json());
 
 // API routes
 app.use('/api/food-search/', require('./routes/api/food-search'));
-app.use('/api/foods', require('./routes/api/foods'))
+app.use('/api/foods', require('./routes/api/foods'));
+app.use('/api/users', require('./routes/api/users'));
 
 // Error Handling Middleware
 app.use(httpErrorHanlder);

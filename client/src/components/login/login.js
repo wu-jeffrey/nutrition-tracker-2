@@ -58,7 +58,7 @@ class Login extends React.Component {
         console.log(response.msg);
       } else {
         callback(response.token, response.user);
-        this.props.history.push('/');
+        setTimeout(this.props.history.push('/'), 0);
       }
     })();
   }

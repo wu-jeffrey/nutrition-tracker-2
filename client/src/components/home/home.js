@@ -16,11 +16,11 @@ class Home extends React.Component {
 
   componentDidMount() {
     const settings = {
-      method: 'DELETE',
+      method: 'GET',
       headers: {
         'x-auth-token': localStorage.getItem('token'),
       },
-    }
+    };
 
     (async () => {
       const response = await fetch(`/api/foods/`, settings);

@@ -24,7 +24,11 @@ const UserSchema = new Schema({
     protein: {type: Number, default: 215},
     carbohydrate: {type: Number, default: 300},
     fat: {type: Number, default: 60},
-  }
+  },
+  foods: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Food',
+  }],
 });
 
 module.exports = User = mongoose.model('user', UserSchema);

@@ -8,7 +8,7 @@ const Food = require('../../db/models/Food');
 // Returns all foods
 // TODO: Use middleware and auth to only get a single user's foods
 router.get('/', auth, (req, res, next) => {
-  Food.find()
+  Food.find({ consumer: req.user.id })
     .sort({ date: -1 })
     .then(foods => res.json(foods))
     .catch(next);
@@ -21,6 +21,7 @@ router.post('/', auth, (req, res, next) => {
     protein: req.body.protein,
     carbohydrate: req.body.carbohydrate,
     fat: req.body.fat,
+    consumer: req.user.id,
   });
     
   newFood.save()

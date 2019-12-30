@@ -29,7 +29,7 @@ class FoodTable extends React.Component {
       headers: {
         'x-auth-token': localStorage.getItem('token'),
       },
-    }
+    };
 
     (async () => {
       const _response = await fetch(`/api/foods/${food_id}`, settings);

@@ -24,8 +24,15 @@ class FoodTable extends React.Component {
   }
 
   handleDeleteClicked(event, food_id) {
+    const settings = {
+      method: 'DELETE',
+      headers: {
+        'x-auth-token': localStorage.getItem('token'),
+      },
+    }
+
     (async () => {
-      const _response = await fetch(`/api/foods/${food_id}`, {method: 'DELETE'});
+      const _response = await fetch(`/api/foods/${food_id}`, settings);
       const response = await _response.json();
       
       if (response.success) {

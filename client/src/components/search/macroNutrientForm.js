@@ -38,8 +38,9 @@ class MacroNutrientForm extends React.Component {
       headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
+          'x-auth-token': localStorage.getItem('token'),
       },
-      body: JSON.stringify({name:name, calories:calories, protein:protein, carbohydrate:carbohydrate, fat:fat})
+      body: JSON.stringify({name: name, calories: calories, protein: protein, carbohydrate: carbohydrate, fat: fat})
     };
 
     (async () => {

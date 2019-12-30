@@ -1,4 +1,4 @@
-const config = require('../../config/config');
+const config = require('../config/config');
 const jwt = require('jsonwebtoken');
 
 const jwtSecret = config.jwtSecret;
@@ -8,7 +8,7 @@ function auth(req, res, next) {
 
   // Check for token
   if(!token) {
-    res.status(401).json({ msg: 'No token, Authorization denied' });
+    res.status(401).json({ error: {msg: 'No token, Authorization denied'} });
   }
 
   try {
@@ -18,7 +18,7 @@ function auth(req, res, next) {
     req.user = decoded;
     next();
   } catch(err) {
-    res.status(400).json({ msg: 'Invalid Token' });
+    res.status(400).json({ error: {msg: 'Invalid Token'} });
   }
 }
 

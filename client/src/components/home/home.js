@@ -15,8 +15,15 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
+    const settings = {
+      method: 'DELETE',
+      headers: {
+        'x-auth-token': localStorage.getItem('token'),
+      },
+    }
+
     (async () => {
-      const response = await fetch(`/api/foods/`);
+      const response = await fetch(`/api/foods/`, settings);
       const foods = await response.json();
       this.setState({foodList: foods});
     })();

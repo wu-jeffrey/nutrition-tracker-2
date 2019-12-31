@@ -7,7 +7,7 @@ This server follows the microservice pattern and REST architecture so that it ca
 * After cloning, don't forget to `npm install`!
 * To test run: `npm run test`
 * To start server: `npm run start`
-* To start server with reloading on filesave: `npm run dev`
+* To start server with reloading on filesave: `npm run server`
 
 ### Development
 * On dev, this server runs on port `5000`. The frontend use a proxy pointed at this port so if you change it make sure to change the proxy too

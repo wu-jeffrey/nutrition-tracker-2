@@ -12,7 +12,7 @@ import Container from '@material-ui/core/Container';
 import { AuthConsumer } from '../../routing/authContext';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 class Login extends React.Component {
   state = {
@@ -54,7 +54,7 @@ class Login extends React.Component {
       const _response = await fetch(encodeURI("/api/auth"), settings);
       const response = await _response.json();
 
-      if (_response.status != 200) {
+      if (_response.status !== 200) {
         console.log(response.msg);
       } else {
         callback(response.token, response.user);
@@ -66,7 +66,7 @@ class Login extends React.Component {
   render() {
     return (
       <AuthConsumer>
-        {({ login }) => (
+        {({ isAuth, login }) => (isAuth ? <Redirect to='/'/> : (
           <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className="paper">
@@ -132,7 +132,7 @@ class Login extends React.Component {
                 </Grid>
               </form>
             </div>
-          </Container>
+          </Container>)
         )}
       </AuthConsumer>
     );

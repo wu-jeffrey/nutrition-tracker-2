@@ -7,13 +7,40 @@ class AuthProvider extends React.Component {
     super();
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
-    const token = localStorage.getItem('token');
-    const user = localStorage.getItem('user');
     this.state = {
-      isAuth: !!token,
-      token: token,
-      user: user,
-    }
+      loading: true,
+    };
+  }
+
+  componentDidMount() {
+    const token = localStorage.getItem('token');
+
+    const settings = {
+      method: 'GET',
+      headers: {
+        'x-auth-token': localStorage.getItem('token'),
+      },
+    };
+
+    (async () => {
+      const response = await fetch(encodeURI("/api/auth/user"), settings);
+      const user = await response.json();
+
+      if (response.status !== 200) {
+        this.setState({
+          loading: false,
+          isAuth: false,
+        })
+      } else {
+        debugger
+        this.setState({
+          loading: false, 
+          isAuth: true,
+          token: token,
+          user: user,
+        })
+      }
+    })();
   }
 
   login(token, user) {
@@ -21,24 +48,22 @@ class AuthProvider extends React.Component {
     // NOTE: Need to set localStore before state, because the latter triggers 
     // a component update which needs the tokens in the store
     localStorage.setItem('token', token);
-    localStorage.setItem('user', user);
-
     this.setState({ isAuth: true, token: token, user: user });
   }
 
   logout() {
     this.setState({ isAuth: false, token: undefined, user: undefined });
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
   }
 
   render() {
-    return (
+    return this.state.loading ? (null) : (
       <AuthContext.Provider
         value={{
           isAuth: this.state.isAuth,
           login: this.login,
-          logout: this.logout
+          logout: this.logout,
+          user: this.state.user,
         }}
       >
         {this.props.children}

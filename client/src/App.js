@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import ProtectedRoute from './routing/protectedRoute.js';
-import { AuthProvider, AuthConsumer } from './routing/authContext.js';
+import { AuthProvider } from './routing/authContext.js';
 import Home from './components/home/home.js';
 import MenuBar from './components/menuBar/menuBar.js';
 import SignUp from './components/signUp/signUp.js';

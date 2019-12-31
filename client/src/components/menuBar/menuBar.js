@@ -36,7 +36,7 @@ export default function MenuBar() {
 
   return (
     <AuthConsumer>
-      {({ isAuth, logout }) => (
+      {({ isAuth, logout, user }) => (
         <div className={classes.root}>
           <AppBar position="static">
             <Toolbar>
@@ -45,6 +45,9 @@ export default function MenuBar() {
               </Typography>
               {isAuth && (
                 <div>
+                  <Typography variant="overline" className={'s'}>
+                    {user.email}
+                  </Typography>
                   <IconButton
                     aria-label="account of current user"
                     aria-controls="menu-appbar"
@@ -69,7 +72,6 @@ export default function MenuBar() {
                     open={open}
                     onClose={handleClose}
                   >
-                    <MenuItem>{localStorage.getItem('user').email}</MenuItem>
                     <MenuItem onClick={handleClose}>Profile</MenuItem>
                     <MenuItem onClick={logout}>Sign Out</MenuItem>
                   </Menu>

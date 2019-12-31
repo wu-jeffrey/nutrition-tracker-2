@@ -32,7 +32,6 @@ class AuthProvider extends React.Component {
           isAuth: false,
         })
       } else {
-        debugger
         this.setState({
           loading: false, 
           isAuth: true,

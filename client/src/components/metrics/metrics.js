@@ -16,7 +16,7 @@ class Metrics extends React.Component {
   }
 
   computePercentage(key) {
-    const percentage = 100*(this.state[key]/this.state.target[key]);
+    const percentage = 100*(this.state[key]/this.state.target[key]) || 0;
     return (percentage > 100 ? 100 : percentage)
   }
 

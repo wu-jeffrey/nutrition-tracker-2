@@ -11,7 +11,15 @@ import { AuthConsumer } from '../../routing/authContext.js';
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {foodList:[], metrics:{}};
+    this.state = {
+      foodList:[], 
+      metrics:{
+        calories: 0,
+        protein: 0,
+        carbohydrate: 0,
+        fat: 0,
+      }
+    };
   }
 
   componentDidMount() {

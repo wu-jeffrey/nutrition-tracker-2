@@ -45,7 +45,7 @@ export default function MenuBar() {
               </Typography>
               {isAuth && (
                 <div>
-                  <Typography variant="overline" className={'s'}>
+                  <Typography variant="overline">
                     {user.email}
                   </Typography>
                   <IconButton
@@ -73,7 +73,7 @@ export default function MenuBar() {
                     onClose={handleClose}
                   >
                     <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={logout}>Sign Out</MenuItem>
+                    <MenuItem onClick={() => {handleClose(); logout();}}>Sign Out</MenuItem>
                   </Menu>
                 </div>
               )}

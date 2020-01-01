@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function MenuBar() {
+export default function MenuBar(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -72,7 +72,7 @@ export default function MenuBar() {
                     open={open}
                     onClose={handleClose}
                   >
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={() => {handleClose(); props.editProfile();}}>Profile</MenuItem>
                     <MenuItem onClick={() => {handleClose(); logout();}}>Sign Out</MenuItem>
                   </Menu>
                 </div>

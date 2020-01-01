@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const config = require('../config/config');
+const config = require('config');
 
-const db_uri = config.mongoURI;
+const db_uri = config.get('mongoURI');
 
 function connect() {
   return new Promise((resolve, reject) => {

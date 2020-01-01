@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const config = require('../../config/config');
+const config = require('config');
 const auth = require('../../middleware/auth');
 
-const jwtSecret = config.jwtSecret;
+const jwtSecret = config.get('jwtSecret');
 
 
 // Models

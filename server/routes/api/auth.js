@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 const auth = require('../../middleware/auth');
 
-const jwtSecret = process.env.jwtSecret || config.get('jwtSecret');
+const jwtSecret = config.get('jwtSecret');
 
 
 // Models

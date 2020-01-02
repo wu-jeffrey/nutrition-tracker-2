@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
-const jwtSecret = config.get('jwtSecret');
+const jwtSecret = process.env.jwtSecret || config.get('jwtSecret');
 
 // Models
 const User = require('../../db/models/User');

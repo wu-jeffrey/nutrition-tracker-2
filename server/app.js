@@ -12,14 +12,15 @@ app.use('/api/foods', require('./routes/api/foods'));
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 
-if (process.env.NODE_ENV === 'production') {
+// if (process.env.NODE_ENV === 'production') {
   // Set static folder
-  app.use(express.static('../client/build'));
+  app.use(express.static(path.join(__dirname, '../client/build')));
+
 
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
   });
-}
+// }
 
 // Error Handling Middleware
 app.use(httpErrorHanlder);

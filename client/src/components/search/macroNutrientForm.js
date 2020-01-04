@@ -60,22 +60,22 @@ class MacroNutrientForm extends React.Component {
           <Grid item xs={6}>
             <TextField
               required
-              fullWidth={true}
+              fullWidth
               id="food_name"
               label="Food Name"
               margin="normal"
-              variant="filled"
+              variant="outlined"
               value={this.state.food_name}
               onChange={this.handleChange.bind(this)}
             />
           </Grid>
           <Grid item xs={6}>
             <TextField
-              fullWidth={true}
+              fullWidth
               id="calories"
               label="Calories"
               margin="normal"
-              variant="filled"
+              variant="outlined"
               value={this.state.calories}
               onChange={this.handleChange.bind(this)}
             />
@@ -85,33 +85,33 @@ class MacroNutrientForm extends React.Component {
         <Grid container spacing={3}>
           <Grid item xs={4}>
             <TextField
-              fullWidth={true}
+              fullWidth
               id="protein"
               label="Protein"
               margin="normal"
-              variant="filled"
+              variant="outlined"
               value={this.state.protein}
               onChange={this.handleChange.bind(this)}
             />
           </Grid>
           <Grid item xs={4}>
             <TextField
-              fullWidth={true}
+              fullWidth
               id="carbohydrate"
               label="Carbs"
               margin="normal"
-              variant="filled"
+              variant="outlined"
               value={this.state.carbohydrate}
               onChange={this.handleChange.bind(this)}
             />
           </Grid>
           <Grid item xs={4}>
             <TextField
-              fullWidth={true}
+              fullWidth
               id="fat"
               label="Fats"
               margin="normal"
-              variant="filled"
+              variant="outlined"
               value={this.state.fat}
               onChange={this.handleChange.bind(this)}
             />

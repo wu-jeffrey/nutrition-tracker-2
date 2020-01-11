@@ -33,6 +33,10 @@ export default function MenuBar(props) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  
+  const openModal = () => {
+
+  };
 
   return (
     <AuthConsumer>
@@ -72,7 +76,7 @@ export default function MenuBar(props) {
                     open={open}
                     onClose={handleClose}
                   >
-                    <MenuItem onClick={() => {handleClose(); props.editProfile();}}>Profile</MenuItem>
+                    <MenuItem onClick={() => {handleClose(); openModal();}}>Profile</MenuItem>
                     <MenuItem onClick={() => {handleClose(); logout();}}>Sign Out</MenuItem>
                   </Menu>
                 </div>

@@ -19,7 +19,6 @@ function App() {
             <Route path="/signup" component={SignUp}></Route>
             <Route path="/login" component={Login}></Route>
             <ProtectedRoute path="/" component={Home}></ProtectedRoute>
-            <Home />
           </Switch>
         </AuthProvider>
       </Router>

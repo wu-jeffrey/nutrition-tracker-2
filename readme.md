@@ -1,6 +1,8 @@
 # Trackit!
 
-🚧 Under Construction!
+# [Check out the Webapp](https://guarded-headland-90818.herokuapp.com)
+
+### NOTE: 🚧 Under Construction! The signup doesn't actually verify your emails since I haven't implemented that. Feel free to spam my DB 😅
 
 Trackit is a web-based application that simplifies the nutrition tracking process by removing unecessary elements and condesing all you need into one page.
 

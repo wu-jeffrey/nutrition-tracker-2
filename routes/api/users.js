@@ -14,7 +14,7 @@ const User = require('../../db/models/User');
 // @access Public
 router.post('/', (req, res, next) => {
   const { name, email, password } = req.body;
-  if (!name || !email || !password) { return res.status(400).json({msg: 'Please enter all fields'}); }
+  if (!name || !email || !password) { return res.status(400).json({ msg: 'Please enter all fields' }); }
 
   const newUser = new User({
     name,
@@ -24,7 +24,7 @@ router.post('/', (req, res, next) => {
 
   User.findOne({ email })
     .then(user => {
-      if (user) { return res.status(400).json({msg: 'User already exists'}); }
+      if (user) { return res.status(400).json({ msg: 'User already exists' }); }
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(password, salt, (err, hash) => {
           if (err) { throw err; }
@@ -35,10 +35,10 @@ router.post('/', (req, res, next) => {
               jwt.sign(
                 { id: user.id },
                 jwtSecret,
-                { expiresIn: 3600*24*7 },
+                { expiresIn: 3600 * 24 * 7 },
                 (err, token) => {
                   if (err) { throw err; }
-                  
+
                   res.json({
                     token,
                     user: {
@@ -55,5 +55,7 @@ router.post('/', (req, res, next) => {
       });
     })
 });
+
+router.patch
 
 module.exports = router;

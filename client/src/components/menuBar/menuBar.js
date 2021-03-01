@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { AuthConsumer } from '../../routing/authContext.js';
 import AppBar from '@material-ui/core/AppBar';
@@ -21,10 +21,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function MenuBar() {
+export default function MenuBar({ openModal }) {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const menuOpen = Boolean(anchorEl);
 
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
@@ -33,6 +34,11 @@ export default function MenuBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const _openModal = () => {
+    handleClose();
+    openModal();
+  }
 
   return (
     <AuthConsumer>
@@ -69,11 +75,11 @@ export default function MenuBar() {
                       vertical: 'top',
                       horizontal: 'right',
                     }}
-                    open={open}
+                    open={menuOpen}
                     onClose={handleClose}
                   >
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={() => {handleClose(); logout();}}>Sign Out</MenuItem>
+                    <MenuItem onClick={_openModal}>Profile</MenuItem>
+                    <MenuItem onClick={() => { handleClose(); logout(); }}>Sign Out</MenuItem>
                   </Menu>
                 </div>
               )}

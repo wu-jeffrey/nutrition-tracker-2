@@ -2,9 +2,8 @@ import React from 'react';
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Slider from '@material-ui/core/Slider';
-import TextField from '@material-ui/core/TextField';
 import { AuthConsumer } from '../../routing/authContext.js';
+import MacroEditor from './macroEditor.js';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -44,7 +43,6 @@ export default function ProfileModal({ open, closeModal }) {
 
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
-
   return (
     <AuthConsumer>
       {({ user }) => (
@@ -59,16 +57,7 @@ export default function ProfileModal({ open, closeModal }) {
               <div>Registration Date:</div>
               <div>{(new Date(user.register_date).toDateString())}</div>
             </div>
-            <form noValidate autoComplete="off">
-              <h3>Daily Goals</h3>
-              <TextField label="Calories" variant="outlined" />
-              <p>Protein</p>
-              <Slider></Slider>
-              <p>Carbohydrates</p>
-              <Slider></Slider>
-              <p>Fat</p>
-              <Slider></Slider>
-            </form>
+            <MacroEditor goal={user.daily_macro_goal} />
 
             <div className={classes.buttonGroup}>
               <Button color="secondary" onClick={closeModal}>Close</Button>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Icon from '@material-ui/core/Icon'
@@ -19,13 +19,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MacroEditor({ goal }) {
+export default function MacroEditor({ goal, onChange }) {
   const classes = useStyles();
 
   const [calories, setCalories] = useState(goal?.calories)
   const [protein, setProtein] = useState(goal?.protein)
   const [carbohydrate, setCarbohydrate] = useState(goal?.carbohydrate)
   const [fat, setFat] = useState(goal?.fat)
+
+
+  useEffect(() => {
+    if (typeof onChange === "function") {
+      const newValue = {
+        calories, protein, carbohydrate, fat
+      }
+
+      const event = new CustomEvent('change', newValue)
+      onChange(event, newValue)
+    }
+  }, [calories, protein, carbohydrate, fat])
 
   // NOTE: lowerBound and upperBound are the lower and upper of the middle slider (carbs).
   // The protein slider's lowerBound is fixed at 0%

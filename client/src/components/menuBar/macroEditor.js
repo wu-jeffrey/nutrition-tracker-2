@@ -196,7 +196,6 @@ export default function MacroEditor({ goal, onChange }) {
               value={protein}
               margin="dense"
               onChange={onProteinInputChange}
-              // onBlur={ }
               inputProps={{
                 step: 1,
                 min: 0,
@@ -226,7 +225,6 @@ export default function MacroEditor({ goal, onChange }) {
               value={carbohydrate}
               margin="dense"
               onChange={onCarbohydrateInputChange}
-              // onBlur={ }
               inputProps={{
                 step: 1,
                 min: 0,
@@ -257,7 +255,6 @@ export default function MacroEditor({ goal, onChange }) {
               value={fat}
               margin="dense"
               onChange={onFatInputChange}
-              // onBlur={ }
               inputProps={{
                 step: 1,
                 min: 0,

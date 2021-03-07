@@ -52,7 +52,6 @@ export default function ProfileModal({ open, closeModal }) {
 
   function onSave(previousUserGoal, callback) {
     if (!shallowEqual(newUserGoal, previousUserGoal)) {
-      // Make API call
       const settings = {
         method: 'PUT',
         headers: {
@@ -70,6 +69,8 @@ export default function ProfileModal({ open, closeModal }) {
         if (typeof callback === "function") {
           callback(updatedUser);
         }
+        // TODO: should check if the response here worked and display snackbar! Gotta setup global a snackbar system
+        // GH issue: https://github.com/wu-jeffrey/nutrition-tracker-2/issues/22
         closeModal();
       })();
     } else {

@@ -253,8 +253,6 @@ export default function MacroEditor({ goal }) {
             />
           </Grid>
         </Grid>
-
-
       </form>
     </div>
   );

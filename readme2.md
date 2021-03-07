@@ -13,6 +13,12 @@ This server follows the microservice pattern and REST architecture so that it ca
 * On dev, this server runs on port `5000`. The frontend use a proxy pointed at this port so if you change it make sure to change the proxy too
 * To add npm scripts, you can find the `scripts` object in the `package.json` file in `server/`
 
+### Deployment
+* There is automatic deploys from a GH branch setup on heroku
+* Locally pull latest `master` and `deploy` branches
+* Merge `master` into `deploy` and push, this should trigger a build and deploy on heroku
+* Note you can swap `master` for any other branch you want to deploy in case of an emergency rollback but for best practice we should only be deploying master
+
 ## Conventions
 * Entrypoint is `server.js`
 * All services will reside inside `/routes/api/*`

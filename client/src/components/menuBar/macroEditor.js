@@ -1,3 +1,5 @@
+// If this file is too confusing, reading this may help: https://github.com/wu-jeffrey/nutrition-tracker-2/issues/17#issuecomment-792313404
+
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';

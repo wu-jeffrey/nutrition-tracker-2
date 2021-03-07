@@ -136,6 +136,21 @@ export default function MacroEditor({ goal }) {
     setCarbohydrate(percentageToGrams(calories, newCarbPercentage, 'carbohydrate'))
   }
 
+
+  const onCaloriesChanged = (event) => {
+    const newCalories = event.target.value;
+    setCalories(newCalories);
+
+    const proteinPercentage = lowerBound;
+    setProtein(percentageToGrams(newCalories, proteinPercentage, 'protein'))
+
+    const carbPercentage = upperBound - lowerBound;
+    setCarbohydrate(percentageToGrams(newCalories, carbPercentage, 'carbohydrate'))
+
+    const fatPercentage = 100 - upperBound;
+    setFat(percentageToGrams(newCalories, fatPercentage, 'fat'))
+  }
+
   return (
     <div>
       <form className={classes.form} noValidate autoComplete="off">
@@ -144,7 +159,7 @@ export default function MacroEditor({ goal }) {
           <TextField
             label="Calories"
             value={calories}
-            onChange={(e) => { setCalories(e.target.value) }}
+            onChange={onCaloriesChanged}
             variant="outlined"
             type="number"
           />

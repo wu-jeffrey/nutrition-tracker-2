@@ -7,6 +7,7 @@ class AuthProvider extends React.Component {
     super();
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
+    this.updateUser = this.updateUser.bind(this);
     this.state = {
       loading: true,
     };
@@ -33,7 +34,7 @@ class AuthProvider extends React.Component {
         })
       } else {
         this.setState({
-          loading: false, 
+          loading: false,
           isAuth: true,
           token: token,
           user: user,
@@ -55,6 +56,10 @@ class AuthProvider extends React.Component {
     localStorage.removeItem('token');
   }
 
+  updateUser(updatedUser) {
+    this.setState({ user: updatedUser })
+  }
+
   render() {
     return this.state.loading ? (null) : (
       <AuthContext.Provider
@@ -63,6 +68,7 @@ class AuthProvider extends React.Component {
           login: this.login,
           logout: this.logout,
           user: this.state.user,
+          updateUser: this.updateUser,
         }}
       >
         {this.props.children}

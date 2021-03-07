@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Icon from '@material-ui/core/Icon'
 import Slider from '@material-ui/core/Slider';
-import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import { OutlinedInput } from '@material-ui/core';
 
@@ -19,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
     width: 100,
   },
 }));
-
 
 export default function MacroEditor({ goal }) {
   const classes = useStyles();
@@ -156,12 +154,12 @@ export default function MacroEditor({ goal }) {
       <form className={classes.form} noValidate autoComplete="off">
         <h3>Daily Goals</h3>
         <div>
-          <TextField
+          <OutlinedInput
             label="Calories"
             value={calories}
             onChange={onCaloriesChanged}
-            variant="outlined"
             type="number"
+            endAdornment={<InputAdornment position="end">kcal</InputAdornment>}
           />
         </div>
 

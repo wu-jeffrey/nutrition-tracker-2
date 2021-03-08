@@ -84,20 +84,20 @@ export default function ProfileModal({ open, closeModal }) {
       {({ user, updateUser }) => (
         <Modal open={open}>
           <div style={modalStyle} className={classes.paper}>
-            <h2>{user.name}'s profile</h2>
+            <h2>{user?.name}'s profile</h2>
             <div className={classes.contentRow}>
               <div>Email:</div>
-              <div>{user.email}</div>
+              <div>{user?.email}</div>
             </div>
             <div className={classes.contentRow}>
               <div>Registration Date:</div>
-              <div>{(new Date(user.register_date).toDateString())}</div>
+              <div>{(new Date(user?.register_date).toDateString())}</div>
             </div>
-            <MacroEditor goal={user.daily_macro_goal} onChange={onMacroEditorChange} />
+            <MacroEditor goal={user?.daily_macro_goal} onChange={onMacroEditorChange} />
 
             < div className={classes.buttonGroup}>
               <Button color="secondary" onClick={closeModal}>Close</Button>
-              <Button color="primary" onClick={() => { onSave(user.daily_macro_goal, updateUser) }}>Save</Button>
+              <Button color="primary" onClick={() => { onSave(user?.daily_macro_goal, updateUser) }}>Save</Button>
             </div>
           </div>
         </Modal>

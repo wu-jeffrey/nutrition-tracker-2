@@ -12,8 +12,8 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      foodList:[], 
-      metrics:{
+      foodList: [],
+      metrics: {
         calories: 0,
         protein: 0,
         carbohydrate: 0,
@@ -33,7 +33,7 @@ class Home extends React.Component {
     (async () => {
       const response = await fetch(`/api/foods/`, settings);
       const foods = await response.json();
-      this.setState({foodList: foods});
+      this.setState({ foodList: foods });
     })();
   }
 
@@ -45,13 +45,13 @@ class Home extends React.Component {
       acc.carbohydrate += food.carbohydrate;
       acc.fat += food.fat;
       return acc;
-    }, {calories:0, protein:0, carbohydrate:0, fat:0});
+    }, { calories: 0, protein: 0, carbohydrate: 0, fat: 0 });
     return total;
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
-      this.setState({metrics: this.calcFoodMetrics()});
+      this.setState({ metrics: this.calcFoodMetrics() });
     }
   }
 
@@ -76,29 +76,28 @@ class Home extends React.Component {
               <Grid item xs={12}>
                 <Card className="card">
                   <CardContent>
-                    <Metrics 
+                    <Metrics
                       calories={this.state.metrics.calories}
                       protein={this.state.metrics.protein}
                       carbohydrate={this.state.metrics.carbohydrate}
                       fat={this.state.metrics.fat}
-                      // Hardcoded target here, make variable when implementing goals section
                       target={user.daily_macro_goal}
                     ></Metrics>
                   </CardContent>
                 </Card>
               </Grid>
-      
+
               {/* Left Column */}
               <Grid item xs={7}>
                 <Card className="card">
-                  <FoodTable 
+                  <FoodTable
                     rows={this.state.foodList}
                     onRowDelete={(deleted_row) => this.handleRowDelete(deleted_row)}
                   >
                   </FoodTable>
                 </Card>
               </Grid>
-              
+
               {/* Right Column */}
               <Grid item xs={5}>
                 <Card className="card">
@@ -107,7 +106,7 @@ class Home extends React.Component {
                   </CardContent>
                 </Card>
               </Grid>
-            </Grid>      
+            </Grid>
           </div>
         )}
       </AuthConsumer>

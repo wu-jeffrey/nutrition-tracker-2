@@ -5,7 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Metrics from '../metrics/metrics.js'
 import FoodTable from '../foodTable/foodTable.js';
-import Search from '../search/search.js';
+import FoodEntryForm from '../foodEntryForm/foodEntryForm.js';
 import { AuthConsumer } from '../../routing/authContext.js';
 
 class Home extends React.Component {
@@ -92,7 +92,7 @@ class Home extends React.Component {
               <Grid item xs={12}>
                 <Card className="card">
                   <CardContent>
-                    <Search onSubmit={(added_food) => this.handleFoodAdded(added_food)}></Search>
+                    <FoodEntryForm onSubmit={(added_food) => this.handleFoodAdded(added_food)} />
                   </CardContent>
                 </Card>
               </Grid>

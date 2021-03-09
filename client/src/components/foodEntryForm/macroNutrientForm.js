@@ -7,14 +7,14 @@ import Grid from '@material-ui/core/Grid';
 class MacroNutrientForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {...this.props};
+    this.state = { ...this.props };
     this.onSubmit = props.onSubmit
   }
 
   componentDidUpdate(prevProps) {
     // TODO: String comparison here feels hacky
     if (JSON.stringify(prevProps) !== JSON.stringify(this.props)) {
-      this.setState({...this.props});
+      this.setState({ ...this.props });
     }
   }
 
@@ -36,11 +36,11 @@ class MacroNutrientForm extends React.Component {
       method: 'POST',
       mode: 'cors',
       headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'x-auth-token': localStorage.getItem('token'),
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'x-auth-token': localStorage.getItem('token'),
       },
-      body: JSON.stringify({name: name, calories: calories, protein: protein, carbohydrate: carbohydrate, fat: fat})
+      body: JSON.stringify({ name: name, calories: calories, protein: protein, carbohydrate: carbohydrate, fat: fat })
     };
 
     (async () => {

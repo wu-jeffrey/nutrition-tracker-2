@@ -2,9 +2,10 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from './autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { Grid } from '@material-ui/core'
 
 import MacroNutrientForm from './macroNutrientForm';
-class Search extends React.Component {
+class FoodEntryForm extends React.Component {
   // Find a better event to update things on
   constructor(props) {
     super(props);
@@ -29,7 +30,7 @@ class Search extends React.Component {
 
   handleInputChange(event, value) {
     // TODO: Fix this Temporary "Debounce"
-    if(value !== "" && value.length > 2) {
+    if (value !== "" && value.length > 2) {
       // Make loader appear and keep popper open
       this.setState(state => ({
         open: true,
@@ -41,13 +42,13 @@ class Search extends React.Component {
         const foods = await response.json();
         this.setState(state => ({
           options: Object.keys(foods)
-          .map((key) => {
-            return foods[key];
-          })
-          .flat()
-          .map((food) => {
-            return { name: food.food_name, nix_item_id: food.nix_item_id };
-          }),
+            .map((key) => {
+              return foods[key];
+            })
+            .flat()
+            .map((food) => {
+              return { name: food.food_name, nix_item_id: food.nix_item_id };
+            }),
           loading: false
         }))
       })();
@@ -100,54 +101,62 @@ class Search extends React.Component {
     })
   }
 
-  render() { 
-    return(
+  render() {
+    return (
       <React.Fragment>
-        <Autocomplete
-          id="search-select"
-          freeSolo={true}
-          open={this.state.open}
-          disableOpenOnFocus={true}
-          // TODO: Figure out better way to get rid of the bind, understand newer syntax instead of component class, its exports a function
-          onInputChange={this.handleInputChange.bind(this)}
-          onOptionClick={this.handleOptionClicked.bind(this)}
-          onClose={e => this.setState({open: false})}
-          getOptionLabel={option => option.name}
-          options={this.state.options}
-          loading={this.state.loading}
-          renderInput={params => (
-            <TextField
-              {...params}
-              label="Search Foods"
-              fullWidth
-              variant="outlined"
-              InputProps={{
-                ...params.InputProps,
-                endAdornment: (
-                  <React.Fragment>
-                    {this.state.loading ? <CircularProgress color="inherit" size={20} /> : null}
-                    {params.InputProps.endAdornment}
-                  </React.Fragment>
-                ),
-              }}
+        <Grid container spacing={3}>
+          <Grid item xs={6}>
+
+            <Autocomplete
+              id="search-select"
+              freeSolo={true}
+              open={this.state.open}
+              disableOpenOnFocus={true}
+              // TODO: Figure out better way to get rid of the bind, understand newer syntax instead of component class, its exports a function
+              onInputChange={this.handleInputChange.bind(this)}
+              onOptionClick={this.handleOptionClicked.bind(this)}
+              onClose={e => this.setState({ open: false })}
+              getOptionLabel={option => option.name}
+              options={this.state.options}
+              loading={this.state.loading}
+              renderInput={params => (
+                <TextField
+                  {...params}
+                  label="Search Foods"
+                  margin="normal"
+                  fullWidth
+                  variant="outlined"
+                  InputProps={{
+                    ...params.InputProps,
+                    endAdornment: (
+                      <React.Fragment>
+                        {this.state.loading ? <CircularProgress color="inherit" size={20} /> : null}
+                        {params.InputProps.endAdornment}
+                      </React.Fragment>
+                    ),
+                  }}
+                />
+              )}
             />
-          )}
-        />
-        {/* TODO: Might want to make props CamelCase */}
-        <MacroNutrientForm
-          food_name={this.state.nutrition_facts.food_name}
-          serving_qty={this.state.nutrition_facts.serving_qty}
-          serving_unit={this.state.nutrition_facts.serving_unit}
-          serving_weight_grams={this.state.nutrition_facts.serving_weight_grams}
-          calories={this.state.nutrition_facts.nf_calories}
-          protein={this.state.nutrition_facts.nf_protein}
-          carbohydrate={this.state.nutrition_facts.nf_total_carbohydrate}
-          fat={this.state.nutrition_facts.nf_total_fat}
-          onSubmit={this.onSubmit}
-        ></MacroNutrientForm>
+          </Grid>
+          <Grid item xs={6}>
+            {/* TODO: Might want to make props CamelCase */}
+            <MacroNutrientForm
+              food_name={this.state.nutrition_facts.food_name}
+              serving_qty={this.state.nutrition_facts.serving_qty}
+              serving_unit={this.state.nutrition_facts.serving_unit}
+              serving_weight_grams={this.state.nutrition_facts.serving_weight_grams}
+              calories={this.state.nutrition_facts.nf_calories}
+              protein={this.state.nutrition_facts.nf_protein}
+              carbohydrate={this.state.nutrition_facts.nf_total_carbohydrate}
+              fat={this.state.nutrition_facts.nf_total_fat}
+              onSubmit={this.onSubmit}
+            ></MacroNutrientForm>
+          </Grid>
+        </Grid>
       </React.Fragment>
     );
   }
 }
 
-export default Search;
+export default FoodEntryForm;

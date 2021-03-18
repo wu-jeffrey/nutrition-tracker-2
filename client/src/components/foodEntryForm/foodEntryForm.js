@@ -29,10 +29,10 @@ export default function FoodEntryForm({ onSubmit }) {
         </Grid>
         <Grid item xs={6}>
           <MacroNutrientForm
-            food_name={selectedFood.name}
-            serving_qty={selectedFood.servingQty}
-            serving_unit={selectedFood.servingUnit}
-            serving_weight_grams={selectedFood.servingWeightGrams}
+            name={selectedFood.name}
+            servingQty={selectedFood.servingQty}
+            servingUnit={selectedFood.servingUnit}
+            servingWeightGrams={selectedFood.servingWeightGrams}
             calories={selectedFood.calories}
             protein={selectedFood.protein}
             carbohydrate={selectedFood.carbohydrate}

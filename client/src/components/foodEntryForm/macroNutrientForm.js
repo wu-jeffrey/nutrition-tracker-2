@@ -61,11 +61,37 @@ class MacroNutrientForm extends React.Component {
             <TextField
               required
               fullWidth
+              id="serving_size"
+              label="Serving Size"
+              margin="normal"
+              variant="outlined"
+              value={this.state.servingQty}
+              onChange={this.handleChange.bind(this)}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              fullWidth
+              id="calories"
+              label="Calories"
+              margin="normal"
+              variant="outlined"
+              value={this.state.servingUnit}
+              onChange={this.handleChange.bind(this)}
+            />
+          </Grid>
+        </Grid>
+        {/* Container with 2 middle inputs */}
+        <Grid container spacing={3}>
+          <Grid item xs={6}>
+            <TextField
+              required
+              fullWidth
               id="food_name"
               label="Food Name"
               margin="normal"
               variant="outlined"
-              value={this.state.food_name}
+              value={this.state.name}
               onChange={this.handleChange.bind(this)}
             />
           </Grid>

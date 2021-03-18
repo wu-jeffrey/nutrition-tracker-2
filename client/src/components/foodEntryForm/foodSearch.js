@@ -28,23 +28,7 @@ export function FoodSearch({ onFoodClicked }) {
 
       (async () => {
         const response = await fetch(encodeURI(`/api/food-search/foods/${value}`));
-        const foods = await response.json();
-
-        // Response contains contains multiple (2 of em AFAICT) arrays of common and branded foods
-        // First map and flat squashes both arrays into a single one then second map remaps keys to camel case
-        const results = Object.keys(foods)
-          .map((key) => foods[key])
-          .flat()
-          .map((food) => {
-            return {
-              name: food.food_name,
-              brandName: food.brand_name,
-              nameWithBrand: food.brand_name_item_name,
-              nixItemId: food.nix_item_id,
-              tagId: food.tag_id,
-              imageSrc: food.photo?.thumb,
-            };
-          })
+        const results = await response.json();
 
         setSearchResults(results);
         setLoading(false);
@@ -57,31 +41,14 @@ export function FoodSearch({ onFoodClicked }) {
 
   function onRowClicked(event, food) {
     if (food === undefined) return;
+
     (async () => {
       const response = await fetch(
         encodeURI(
-          `/api/food-search/nutrition-facts/${!!food.nixItemId}/${food.nixItemId || food.name}`
+          `/api/food-search/nutrition-facts/${food.isBranded}/${food.nixItemId || food.name}`
         )
       );
-      const payload = await response.json();
-
-      const fieldsMapping = {
-        'food_name': 'name',
-        'serving_qty': 'servingQty',
-        'serving_unit': 'servingUnit',
-        'serving_weight_grams': 'servingWeightGrams',
-        'nf_calories': 'calories',
-        'nf_protein': 'protein',
-        'nf_total_carbohydrate': 'carbohydrate',
-        'nf_total_fat': 'fat',
-      };
-
-      const nutritionFacts = Object.keys(payload.foods[0])
-        .filter((key) => fieldsMapping[key]) // Filter out keys not in the mapping
-        .reduce((acc, key) => {
-          acc[fieldsMapping[key]] = payload.foods[0][key];
-          return acc
-        }, {});
+      const nutritionFacts = await response.json();
 
       if (typeof onFoodClicked === 'function') {
         // Callback
@@ -121,7 +88,6 @@ export function FoodSearch({ onFoodClicked }) {
     </>
 
   )
-
 
   function buildTableRow(row, key) {
     return (

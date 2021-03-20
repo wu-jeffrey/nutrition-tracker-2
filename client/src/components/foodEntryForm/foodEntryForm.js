@@ -8,7 +8,7 @@ export default function FoodEntryForm({ onSubmit }) {
   const [selectedFood, setSelectedFood] = useState({
     name: '',
     servingQty: 0,
-    servingUnit: '',
+    servingUnit: 'g',
     servingWeightGrams: '',
     calories: 0,
     protein: 0,

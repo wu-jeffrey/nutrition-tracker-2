@@ -18,8 +18,6 @@ class MacroNutrientForm extends React.Component {
     }
   }
 
-  // TODO: Debounce this!
-  // event.target.id is calories | protein | carbohydrate | fat
   handleChange(event) {
     if (this.state[event.target.id] === event.target.value) return;
     this.setState({
@@ -30,8 +28,8 @@ class MacroNutrientForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     event.stopPropagation();
-    // TODO: put this in a datalayer
-    const { food_name: name, calories, protein, carbohydrate, fat } = this.state;
+
+    const { name, calories, protein, carbohydrate, fat } = { ...this.state };
     const settings = {
       method: 'POST',
       mode: 'cors',
@@ -46,7 +44,8 @@ class MacroNutrientForm extends React.Component {
     (async () => {
       const _response = await fetch("/api/foods/", settings);
       const response = await _response.json();
-      if (this.onSubmit) {
+
+      if (this.onSubmit && _response.ok) {
         this.onSubmit(response);
       }
     })();
@@ -72,8 +71,8 @@ class MacroNutrientForm extends React.Component {
           <Grid item xs={6}>
             <TextField
               fullWidth
-              id="calories"
-              label="Calories"
+              id="serving_unit"
+              label="Serving Unit"
               margin="normal"
               variant="outlined"
               value={this.state.servingUnit}
@@ -87,7 +86,7 @@ class MacroNutrientForm extends React.Component {
             <TextField
               required
               fullWidth
-              id="food_name"
+              id="name"
               label="Food Name"
               margin="normal"
               variant="outlined"

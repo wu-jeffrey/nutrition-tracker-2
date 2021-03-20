@@ -97,8 +97,11 @@ export function FoodSearch({ onFoodClicked }) {
         onClick={(e) => { onRowClicked(e, row) }}
       >
         <TableCell>
-          {/* NOTE Avatar Child is fallback for null imageSrc */}
-          <Avatar alt={row.name} src={row.imageSrc} >{row.name[0].toUpperCase()}</Avatar>
+          {// Hacky imageSrc check to avoid ugly nutrionix placeholder
+            (row.imageSrc !== "https://d2eawub7utcl6.cloudfront.net/images/nix-apple-grey.png") ?
+              (<Avatar alt={row.name} src={row.imageSrc} />) :
+              (<Avatar alt={row.name}>{row.name[0].toUpperCase()}</Avatar>)
+          }
         </TableCell>
 
         <TableCell>{row.nameWithBrand || row.name}</TableCell>

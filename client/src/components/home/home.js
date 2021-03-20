@@ -5,7 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Metrics from '../metrics/metrics.js'
 import FoodTable from '../foodTable/foodTable.js';
-import Search from '../search/search.js';
+import FoodEntryForm from '../foodEntryForm/foodEntryForm.js';
 import { AuthConsumer } from '../../routing/authContext.js';
 
 class Home extends React.Component {
@@ -73,6 +73,7 @@ class Home extends React.Component {
         {({ user }) => (
           <div className="home">
             <Grid container spacing={3}>
+              {/* Top Row */}
               <Grid item xs={12}>
                 <Card className="card">
                   <CardContent>
@@ -87,23 +88,23 @@ class Home extends React.Component {
                 </Card>
               </Grid>
 
-              {/* Left Column */}
-              <Grid item xs={7}>
+              {/* Middle Row */}
+              <Grid item xs={12}>
+                <Card className="card">
+                  <CardContent>
+                    <FoodEntryForm onSubmit={(added_food) => this.handleFoodAdded(added_food)} />
+                  </CardContent>
+                </Card>
+              </Grid>
+
+              {/* Bot Row */}
+              <Grid item xs={12}>
                 <Card className="card">
                   <FoodTable
                     rows={this.state.foodList}
                     onRowDelete={(deleted_row) => this.handleRowDelete(deleted_row)}
                   >
                   </FoodTable>
-                </Card>
-              </Grid>
-
-              {/* Right Column */}
-              <Grid item xs={5}>
-                <Card className="card">
-                  <CardContent>
-                    <Search onSubmit={(added_food) => this.handleFoodAdded(added_food)}></Search>
-                  </CardContent>
                 </Card>
               </Grid>
             </Grid>

@@ -7,19 +7,17 @@ import Grid from '@material-ui/core/Grid';
 class MacroNutrientForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {...this.props};
+    this.state = { ...this.props };
     this.onSubmit = props.onSubmit
   }
 
   componentDidUpdate(prevProps) {
     // TODO: String comparison here feels hacky
     if (JSON.stringify(prevProps) !== JSON.stringify(this.props)) {
-      this.setState({...this.props});
+      this.setState({ ...this.props });
     }
   }
 
-  // TODO: Debounce this!
-  // event.target.id is calories | protein | carbohydrate | fat
   handleChange(event) {
     if (this.state[event.target.id] === event.target.value) return;
     this.setState({
@@ -30,23 +28,24 @@ class MacroNutrientForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     event.stopPropagation();
-    // TODO: put this in a datalayer
-    const { food_name: name, calories, protein, carbohydrate, fat } = this.state;
+
+    const { name, calories, protein, carbohydrate, fat } = { ...this.state };
     const settings = {
       method: 'POST',
       mode: 'cors',
       headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'x-auth-token': localStorage.getItem('token'),
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'x-auth-token': localStorage.getItem('token'),
       },
-      body: JSON.stringify({name: name, calories: calories, protein: protein, carbohydrate: carbohydrate, fat: fat})
+      body: JSON.stringify({ name: name, calories: calories, protein: protein, carbohydrate: carbohydrate, fat: fat })
     };
 
     (async () => {
       const _response = await fetch("/api/foods/", settings);
       const response = await _response.json();
-      if (this.onSubmit) {
+
+      if (this.onSubmit && _response.ok) {
         this.onSubmit(response);
       }
     })();
@@ -61,11 +60,37 @@ class MacroNutrientForm extends React.Component {
             <TextField
               required
               fullWidth
-              id="food_name"
+              id="serving_size"
+              label="Serving Size"
+              margin="normal"
+              variant="outlined"
+              value={this.state.servingQty}
+              onChange={this.handleChange.bind(this)}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              fullWidth
+              id="serving_unit"
+              label="Serving Unit"
+              margin="normal"
+              variant="outlined"
+              value={this.state.servingUnit}
+              onChange={this.handleChange.bind(this)}
+            />
+          </Grid>
+        </Grid>
+        {/* Container with 2 middle inputs */}
+        <Grid container spacing={3}>
+          <Grid item xs={6}>
+            <TextField
+              required
+              fullWidth
+              id="name"
               label="Food Name"
               margin="normal"
               variant="outlined"
-              value={this.state.food_name}
+              value={this.state.name}
               onChange={this.handleChange.bind(this)}
             />
           </Grid>

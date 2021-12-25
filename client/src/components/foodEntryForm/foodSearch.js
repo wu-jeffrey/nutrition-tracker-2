@@ -41,6 +41,7 @@ export function FoodSearch({ onFoodClicked }) {
 
   function onRowClicked(event, food) {
     if (food === undefined) return;
+    console.log(food.nixItemId);
 
     (async () => {
       const response = await fetch(

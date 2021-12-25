@@ -45,7 +45,7 @@ class AuthProvider extends React.Component {
 
   login(token, user) {
     // TODO: Vulnerability to CSRF & XSS because this sensitive data is exposed
-    // NOTE: Need to set localStore before state, because the latter triggers 
+    // NOTE: Need to set localStore before state, because the latter triggers
     // a component update which needs the tokens in the store
     localStorage.setItem('token', token);
     this.setState({ isAuth: true, token: token, user: user });

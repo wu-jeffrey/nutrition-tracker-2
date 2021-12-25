@@ -46,8 +46,8 @@ router.get('/foods/:query', (req, res, next) => {
   request.on('error', (e) => {
     next(e);
   });
-  request.end();
 });
+  request.end();
 
 router.get('/nutrition-facts/:branded/:id', (req, res, next) => {
   const branded = req.params.branded === 'true'; // TODO: This is hacky
@@ -73,7 +73,7 @@ router.get('/nutrition-facts/:branded/:id', (req, res, next) => {
     });
     response.on('end', () => {
       const _food = JSON.parse(body.toString()).foods[0];
-
+      console.log(id, _food)
       const food = {
         name: _food.food_name,
         servingQty: _food.serving_qty,

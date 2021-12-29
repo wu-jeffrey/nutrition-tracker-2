@@ -4,6 +4,7 @@ import { pink } from '@mui/material/colors';
 import logo from './logo.svg';
 import './App.css';
 import { SpeechRecognitionContextProvider } from './foundation/SpeechRecognition';
+import { BottomNavigationBar } from './foundation/navigation/BottomNavigationBar'
 
 function App() {
   const darkTheme = createTheme({
@@ -33,6 +34,7 @@ function App() {
               Learn React
             </a>
           </header>
+          <BottomNavigationBar />
         </ThemeProvider>
       </SpeechRecognitionContextProvider>
     </div>

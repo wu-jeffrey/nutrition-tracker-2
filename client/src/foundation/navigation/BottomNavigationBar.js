@@ -2,17 +2,18 @@ import { useState } from 'react';
 import { Fab, BottomNavigation, BottomNavigationAction } from '@mui/material';
 import { FactCheck, Kitchen, Timeline, Settings, Add } from '@mui/icons-material';
 
-export function BottomNavigationBar() {
+export function BottomNavigationBar({ onFabClicked }) {
   const [value, setValue] = useState(1);
 
   return (
-    <div style={{ position: 'sticky', bottom: 0 }}>
+    <div style={{ position: 'fixed', bottom: 0, width: '100%' }}>
       <Fab color="primary" aria-label="add"
         style={{
           position: 'absolute',
           zIndex: 1,
           transform: 'translate(-50%, -75%)',
         }}
+        onClick={onFabClicked}
       >
         <Add />
       </Fab>

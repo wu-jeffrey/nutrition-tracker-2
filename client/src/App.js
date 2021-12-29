@@ -1,10 +1,13 @@
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { pink } from '@mui/material/colors';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import logo from './logo.svg';
 import './App.css';
 import { SpeechRecognitionContextProvider } from './foundation/SpeechRecognition';
 import { BottomNavigationBar } from './foundation/navigation/BottomNavigationBar'
+
+import { Diary } from './sections/Diary/Diary'
+import { Kitchen } from './sections/Kitchen/Kitchen'
 
 function App() {
   const darkTheme = createTheme({
@@ -17,14 +20,19 @@ function App() {
   });
 
   return (
-    <div className="App">
-      <SpeechRecognitionContextProvider>
-        <ThemeProvider theme={darkTheme}>
-
+    <SpeechRecognitionContextProvider>
+      <ThemeProvider theme={darkTheme}>
+        <div className="App">
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Diary />} />
+              <Route path="/kitchen" element={<Kitchen />} />
+            </Routes>
+          </BrowserRouter>
           <BottomNavigationBar />
-        </ThemeProvider>
-      </SpeechRecognitionContextProvider>
-    </div>
+        </div>
+      </ThemeProvider>
+    </SpeechRecognitionContextProvider>
   );
 }
 

@@ -1,6 +1,6 @@
 const db = require('./db/index.js');
 const app = require('./app.js');
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5002;
 
 db.connect()
   .then(() => {

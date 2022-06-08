@@ -1,5 +1,5 @@
 # Server
-This folder contains backend code. 
+This folder contains backend code.
 
 This server follows the microservice pattern and REST architecture so that it can be horizontally scaled and accessesed by platform agnostic clients.
 
@@ -10,7 +10,7 @@ This server follows the microservice pattern and REST architecture so that it ca
 * To start server with reloading on filesave: `npm run server`
 
 ### Development
-* On dev, this server runs on port `5000`. The frontend use a proxy pointed at this port so if you change it make sure to change the proxy too
+* On dev, this server runs on port `5002`. The frontend use a proxy pointed at this port so if you change it make sure to change the proxy too
 * To add npm scripts, you can find the `scripts` object in the `package.json` file in `server/`
 
 ### Deployment
@@ -38,7 +38,7 @@ This server follows the microservice pattern and REST architecture so that it ca
 * The `test` folder structure mimics the `server` folder structure, and the test for each file will be `<name-of-file>.test.js`
 
 ### API keys / Sensitive Data
-* Several Keys are used: 
+* Several Keys are used:
 1. MongoDB URI
 2. Nutritionix API Key
 3. Nutritionix APP ID
@@ -47,7 +47,7 @@ This server follows the microservice pattern and REST architecture so that it ca
 * They should be moved to environment variables... will implement when I get my mac
 
 ### Technology used
-* Node.js: Event-driven nonblocking JS runtime Environment, 
+* Node.js: Event-driven nonblocking JS runtime Environment,
 * Express.js: Simplifies writing of API endpoints that follow REST standards
 * MongoDB ATLAS: NoSQL DBAAS, picked b/c sharding makes horizontal scalability easy
 

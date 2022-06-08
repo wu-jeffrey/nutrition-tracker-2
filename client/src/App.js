@@ -8,6 +8,8 @@ import { BottomNavigationBar } from './foundation/navigation/BottomNavigationBar
 
 import { Diary } from './sections/Diary/Diary'
 import { Kitchen } from './sections/Kitchen/Kitchen'
+import { Progress } from './sections/Progress/Progress'
+import { Settings } from './sections/Settings/Settings'
 
 function App() {
   const darkTheme = createTheme({
@@ -26,10 +28,13 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Diary />} />
+              <Route path="/diary" element={<Diary />} />
               <Route path="/kitchen" element={<Kitchen />} />
+              <Route path="/progress" element={<Progress />} />
+              <Route path="/settings" element={<Settings />} />
             </Routes>
+            <BottomNavigationBar />
           </BrowserRouter>
-          <BottomNavigationBar />
         </div>
       </ThemeProvider>
     </SpeechRecognitionContextProvider>

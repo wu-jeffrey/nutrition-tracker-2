@@ -1,8 +1,8 @@
-import { useState, createContext, useEffect } from "react";
+import React, { useState, createContext, useEffect, useContext } from "react";
 
 const AuthContext = createContext();
 
-export function AuthContextProvider({
+function AuthProvider({
   children
 }) {
   const [loading, setLoading] = useState(true);
@@ -25,16 +25,16 @@ export function AuthContextProvider({
       const user = await response.json();
 
       if (response.status !== 200) {
-        setLoading(false);
         setAuthenticated(false);
-      } else {
         setLoading(false);
-        setAuthenticated(true)
+      } else {
+        setAuthenticated(true);
         setToken(_token)
         setUser(user)
+        setLoading(false);
       }
     })()
-  })
+  }, [])
 
   function login(_token, user) {
     // TODO: Vulnerability to CSRF & XSS because this sensitive data is exposed
@@ -57,7 +57,7 @@ export function AuthContextProvider({
     setUser(updatedUser)
   }
 
-  return loading ? (null) : (
+  return loading ? null : (
     <AuthContext.Provider
       value={{
         isAuth: authenticated,
@@ -72,5 +72,9 @@ export function AuthContextProvider({
   )
 }
 
+function useAuthContext() {
+  return useContext(AuthContext);
+}
+
 const AuthConsumer = AuthContext.Consumer
-export { AuthProvider, AuthConsumer }
+export { AuthProvider, AuthConsumer, useAuthContext }

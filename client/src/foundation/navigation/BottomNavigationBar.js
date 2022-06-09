@@ -3,6 +3,8 @@ import { Fab, BottomNavigation, BottomNavigationAction } from '@mui/material';
 import { FactCheck, Kitchen, Timeline, Settings, Add } from '@mui/icons-material';
 import { Link, useLocation } from 'react-router-dom';
 
+import { useAuthContext } from '../auth/authContext';
+
 const PATH_ENUM = {
   '/': 0,
   '/diary': 0,
@@ -15,6 +17,8 @@ export function BottomNavigationBar({ onFabClicked }) {
   const pathname = useLocation().pathname;
   const [value, setValue] = useState(PATH_ENUM[pathname]);
 
+  const { logout } = useAuthContext();
+
   return (
     <div style={{ position: 'fixed', bottom: 0, width: '100%' }}>
       <Fab color="primary" aria-label="add"
@@ -23,7 +27,7 @@ export function BottomNavigationBar({ onFabClicked }) {
           zIndex: 1,
           transform: 'translate(-50%, -75%)',
         }}
-        onClick={onFabClicked}
+        onClick={logout}
       >
         <Add />
       </Fab>
@@ -31,7 +35,6 @@ export function BottomNavigationBar({ onFabClicked }) {
         showLabels
         value={value}
         onChange={(event, newValue) => {
-          console.log(event, newValue)
           setValue(newValue);
         }}
       >

@@ -8,7 +8,7 @@ import { SpeechRecognitionContextProvider } from './foundation/SpeechRecognition
 import { AuthProvider } from './foundation/auth/authContext';
 import { BottomNavigationBar } from './foundation/navigation/BottomNavigationBar';
 
-// import SignUp from './sections/Auth/SignUp'
+import { SignUp } from './sections/Auth/SignUp'
 import { Login } from './sections/Auth/Login'
 import { Diary } from './sections/Diary/Diary'
 import { Kitchen } from './sections/Kitchen/Kitchen'
@@ -27,10 +27,10 @@ function App() {
 
   function BottomNavLayout() {
     return (
-      <>
+      <div style={{ padding: 12 }}>
         <Outlet />
         <BottomNavigationBar />
-      </>
+      </div>
     )
   }
 
@@ -41,7 +41,7 @@ function App() {
           <div className="App">
             <BrowserRouter>
               <Routes>
-                {/* <Route path="/signup" component={<SignUp />}></Route> */}
+                <Route path="/signup" element={<SignUp />}></Route>
                 <Route path="/login" element={<Login />} />
                 <Route path="/" element={<BottomNavLayout />}>
                   <Route index element={<ProtectedComponent component={<Diary />} />} />

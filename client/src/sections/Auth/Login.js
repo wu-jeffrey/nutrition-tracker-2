@@ -11,7 +11,7 @@ import { Lock } from '@mui/icons-material';
 import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Container from '@mui/material/Container';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useAuthContext } from '../../foundation/auth/authContext';
 
@@ -21,14 +21,13 @@ export function Login() {
   const [rememberMe, setRememberMe] = useState(false);
 
   const navigate = useNavigate();
-  const location = useLocation();
   const { isAuth, login } = useAuthContext();
 
   useEffect(() => {
     if (isAuth) {
       setTimeout(() => { navigate('/', { replace: true }) });
     }
-  }, [isAuth])
+  }, [isAuth, navigate])
 
 
   function handleInputChange(event) {
@@ -133,8 +132,10 @@ export function Login() {
           >
             Log In
           </Button>
-          <Grid container>
-            <Grid item xs>
+          <Grid container
+            direction="row"
+            justifyContent="space-between">
+            <Grid item>
               <Link href="#" variant="body2">
                 Forgot password?
               </Link>
